@@ -1,0 +1,42 @@
+
+<nav class="site-nav">
+    <div class="nav-inner">
+
+        <a href="{{ url_for('dashboard') }}" class="nav-brand">
+            <span class="brand-icon">JT</span>
+            <span>JobTrack</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('dashboard') }}"
+               class="nav-link {{ 'is-active' if request.path == '/' else '' }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('companies') }}"
+               class="nav-link {{ 'is-active' if request.path.startswith('/companies') else '' }}">
+                Companies
+            </a>
+
+            <a href="{{ url_for('jobs') }}"
+               class="nav-link {{ 'is-active' if request.path.startswith('/jobs') else '' }}">
+                Jobs
+            </a>
+
+            <a href="{{ url_for('applications') }}"
+               class="nav-link {{ 'is-active' if request.path.startswith('/applications') else '' }}">
+                Applications
+            </a>
+
+            <a href="{{ url_for('contacts') }}"
+               class="nav-link {{ 'is-active' if request.path.startswith('/contacts') else '' }}">
+                Contacts
+            </a>
+
+            <a href="{{ url_for('job_match') }}"
+               class="nav-link {{ 'is-active' if request.path.startswith('/job-match') else '' }}">
+                Job Match
+            </a>
+        </div>
+    </div>
+</nav>

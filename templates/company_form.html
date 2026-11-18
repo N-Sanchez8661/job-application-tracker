@@ -10,6 +10,7 @@
           href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    {% include "_nav.html" %}
     <main class="container">
         <a href="{{ url_for('companies') }}">← Companies</a>
 

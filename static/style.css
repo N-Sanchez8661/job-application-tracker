@@ -238,3 +238,461 @@ th {
     background: #fee2e2;
     color: #991b1b;
 }
+
+
+/* ==========================================
+   JOBTRACK - UI DESIGN UPGRADE
+   ========================================== */
+
+:root {
+    color-scheme: light;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", sans-serif;
+    background: #f5f7fc;
+    color: #17233b;
+    margin: 0;
+}
+
+/* Navigation */
+
+.site-nav {
+    background: #ffffff;
+    border-bottom: 1px solid #e5eaf3;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 21px;
+    font-weight: 800;
+    text-decoration: none;
+    color: #17233b;
+    white-space: nowrap;
+}
+
+.brand-icon {
+    background: #2563eb;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    letter-spacing: -1px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #64748b;
+    padding: 10px 13px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.nav-link:hover {
+    background: #eff4ff;
+    color: #2563eb;
+}
+
+.nav-link.is-active {
+    background: #e8efff;
+    color: #2563eb;
+}
+
+/* Main Layout */
+
+.container {
+    max-width: 1120px;
+    margin: 40px auto 75px;
+    padding: 0 24px;
+}
+
+/* Dashboard Hero */
+
+.dashboard-hero {
+    background: linear-gradient(
+        120deg,
+        #e7edff,
+        #f2f6ff
+    );
+    border: 1px solid #e0e8ff;
+    padding: 48px;
+    border-radius: 20px;
+    margin-bottom: 42px;
+}
+
+.eyebrow {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+}
+
+.dashboard-hero h1 {
+    color: #14213d;
+    font-size: clamp(30px, 4vw, 43px);
+    line-height: 1.2;
+    max-width: 640px;
+    margin: 0 0 17px;
+}
+
+.hero-description {
+    color: #52627a;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 570px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px solid #2563eb;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-outline:hover {
+    background: #dbeafe;
+}
+
+/* Dashboard Statistics */
+
+.dashboard-section {
+    margin-bottom: 38px;
+}
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    color: #17233b;
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+
+.section-heading p {
+    color: #64748b;
+    margin: 0;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 0;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #e7ebf3;
+    border-radius: 15px;
+    padding: 27px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(27, 45, 85, 0.08);
+}
+
+.stat-label {
+    color: #64748b;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.stat-number {
+    color: #17233b;
+    font-size: 39px;
+    line-height: 1;
+}
+
+.stat-footer {
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Quick Actions */
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.quick-action {
+    background: white;
+    border: 1px solid #e7ebf3;
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #17233b;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.quick-action:hover {
+    background: #f0f5ff;
+}
+
+.quick-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8efff;
+    color: #2563eb;
+    font-size: 20px;
+    font-weight: 700;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+/* Forms and Tables */
+
+.company-form,
+.match-form,
+.match-card {
+    border: 1px solid #e7ebf3;
+    box-shadow: 0 5px 18px rgba(20, 35, 70, 0.04);
+}
+
+.table-wrapper {
+    background: white;
+    border: 1px solid #e7ebf3;
+    border-radius: 12px;
+    overflow-x: auto;
+}
+
+.company-form input:focus,
+.company-form select:focus,
+.company-form textarea:focus,
+.match-form textarea:focus {
+    outline: 2px solid #93b4ff;
+    outline-offset: 1px;
+}
+
+.site-footer {
+    padding: 25px 0;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+/* Responsive Layout */
+
+@media (max-width: 900px) {
+    .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .nav-link {
+        white-space: nowrap;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-hero {
+        padding: 28px;
+    }
+
+    .stats,
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* ==========================================
+   JOBTRACK - PURPLE THEME
+   ========================================== */
+
+:root {
+    --primary: #7c3aed;
+    --primary-dark: #6d28d9;
+    --primary-light: #ede9fe;
+    --background: #faf7ff;
+    --text-dark: #241638;
+}
+
+/* General */
+body {
+    background: var(--background);
+    color: var(--text-dark);
+}
+
+h1 {
+    color: var(--primary-dark);
+}
+
+/* Navigation */
+.brand-icon {
+    background: var(--primary);
+}
+
+.nav-link:hover {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+.nav-link.is-active {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+/* Dashboard Hero */
+.dashboard-hero {
+    background: linear-gradient(
+        120deg,
+        #ede9fe,
+        #faf5ff
+    );
+    border-color: #ddd6fe;
+}
+
+.dashboard-hero h1 {
+    color: #4c1d95;
+}
+
+.eyebrow {
+    color: var(--primary);
+}
+
+/* Buttons */
+.btn {
+    background: var(--primary);
+    color: white;
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+}
+
+.btn-outline {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary-light);
+}
+
+/* Statistics */
+.stat-footer {
+    color: var(--primary);
+}
+
+.card p {
+    color: var(--primary);
+}
+
+/* Quick Actions */
+.quick-icon {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.quick-action:hover {
+    background: #f5f0ff;
+}
+
+/* Tables */
+th {
+    background: #f0eaff;
+}
+
+.table-wrapper {
+    border-color: #e9ddff;
+}
+
+/* Forms */
+.company-form input:focus,
+.company-form select:focus,
+.company-form textarea:focus,
+.match-form textarea:focus {
+    outline: 2px solid #c4b5fd;
+    outline-offset: 1px;
+}
+
+/* Job Match */
+.match-percentage {
+    color: var(--primary);
+}
+
+.progress-fill {
+    background: var(--primary);
+}
+
+/* Application Status */
+.status-badge {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+}
+
+/* Links */
+main a:not(.btn):not(.btn-outline):not(.stat-card):not(.quick-action) {
+    color: var(--primary-dark);
+}
+
+.stat-card:hover {
+    border-color: #c4b5fd;
+    box-shadow: 0 8px 22px rgba(109, 40, 217, 0.10);
+}
+

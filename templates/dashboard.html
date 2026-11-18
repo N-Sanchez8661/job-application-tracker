@@ -3,43 +3,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application Tracker</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | JobTrack</title>
+
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <main class="container">
-        <h1>Job Application Tracker</h1>
-        <p>Welcome to your personal job search dashboard!</p>
 
-        <div class="stats">
-            <div class="card">
-                <h2>Companies</h2>
-                <a href="{{ url_for('companies') }}">View Companies</a>
-                <p>{{ company_count }}</p>
+<body>
+
+    {% include "_nav.html" %}
+
+    <main class="container">
+
+        <!-- Welcome Section -->
+        <section class="dashboard-hero">
+
+            <p class="eyebrow">YOUR CAREER DASHBOARD</p>
+
+            <h1>Your next opportunity starts here.</h1>
+
+            <p class="hero-description">
+                Keep track of your job applications, explore
+                opportunities, and stay organized throughout
+                your job search.
+            </p>
+
+            <div class="hero-actions">
+                <a href="{{ url_for('add_application') }}"
+                   class="btn">
+                    + Track Application
+                </a>
+
+                <a href="{{ url_for('job_match') }}"
+                   class="btn-outline">
+                    Find Job Matches
+                </a>
             </div>
-            <div class="card">
-                <h2>Jobs</h2>
-                <a href="{{ url_for('jobs') }}">View Jobs</a>
-                <p>{{ job_count }}</p>
+
+        </section>
+
+
+        <!-- Statistics Section -->
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+                <h2>At a Glance</h2>
+                <p>Your job search overview</p>
             </div>
-            <div class="card">
-                <h2>Applications</h2>
-                <a href="{{ url_for('applications') }}">View Applications</a>
-                <p>{{ application_count }}</p>
+
+            <div class="stats">
+
+                <a href="{{ url_for('companies') }}"
+                   class="stat-card">
+                    <span class="stat-label">Companies</span>
+                    <strong class="stat-number">
+                        {{ company_count }}
+                    </strong>
+                    <span class="stat-footer">
+                        View Companies →
+                    </span>
+                </a>
+
+                <a href="{{ url_for('jobs') }}"
+                   class="stat-card">
+                    <span class="stat-label">Jobs</span>
+                    <strong class="stat-number">
+                        {{ job_count }}
+                    </strong>
+                    <span class="stat-footer">
+                        View Jobs →
+                    </span>
+                </a>
+
+                <a href="{{ url_for('applications') }}"
+                   class="stat-card">
+                    <span class="stat-label">Applications</span>
+                    <strong class="stat-number">
+                        {{ application_count }}
+                    </strong>
+                    <span class="stat-footer">
+                        View Applications →
+                    </span>
+                </a>
+
+                <a href="{{ url_for('contacts') }}"
+                   class="stat-card">
+                    <span class="stat-label">Contacts</span>
+                    <strong class="stat-number">
+                        {{ contact_count }}
+                    </strong>
+                    <span class="stat-footer">
+                        View Contacts →
+                    </span>
+                </a>
+
             </div>
-            <div class="card">
-                <h2>Contacts</h2>
-                <a href="{{ url_for('contacts') }}">View Contacts</a>
-                <p>{{ contact_count }}</p>
+
+        </section>
+
+
+        <!-- Quick Actions Section -->
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+                <h2>Quick Actions</h2>
+                <p>Manage your job search</p>
             </div>
-        </div>
-        <div style="margin-top: 30px;">
-    <a href="{{ url_for('job_match') }}" class="btn">
-        Find My Job Matches
-    </a>
-</div>
+
+            <div class="quick-actions">
+
+                <a href="{{ url_for('add_company') }}"
+                   class="quick-action">
+                    <span class="quick-icon">+</span>
+                    <span>Add a Company</span>
+                </a>
+
+                <a href="{{ url_for('add_job') }}"
+                   class="quick-action">
+                    <span class="quick-icon">+</span>
+                    <span>Add a Job</span>
+                </a>
+
+                <a href="{{ url_for('add_contact') }}"
+                   class="quick-action">
+                    <span class="quick-icon">+</span>
+                    <span>Add a Contact</span>
+                </a>
+
+                <a href="{{ url_for('job_match') }}"
+                   class="quick-action">
+                    <span class="quick-icon">%</span>
+                    <span>Match My Skills</span>
+                </a>
+
+            </div>
+
+        </section>
+
+        <footer class="site-footer">
+            JobTrack — Job Application Management System
+        </footer>
+
     </main>
+
 </body>
 </html>
