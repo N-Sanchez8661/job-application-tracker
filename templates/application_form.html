@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form - Job Tracker</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="container">
+        <a href="{{ url_for('applications') }}">← Applications</a>
+
+        <h1>
+            {{ 'Edit Application' if editing else 'Add Application' }}
+        </h1>
+
+        {% for message in get_flashed_messages() %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+
+        {% if not jobs %}
+            <p class="message">
+                You need to add a job before creating an application.
+                <a href="{{ url_for('add_job') }}">Add Job</a>
+            </p>
+        {% endif %}
+
+        <form method="POST" class="company-form">
+
+            <label for="job_id">Job *</label>
+            <select id="job_id" name="job_id" required>
+                <option value="">Select a job</option>
+
+                {% for job in jobs %}
+                <option value="{{ job.job_id }}"
+                    {% if application.get('job_id')|string == job.job_id|string %}
+                        selected
+                    {% endif %}>
+                    {{ job.job_title }} — {{ job.company_name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="application_date">Application Date *</label>
+            <input type="date"
+                   id="application_date"
+                   name="application_date"
+                   value="{{ application.get('application_date') or '' }}"
+                   required>
+
+            <label for="status">Application Status *</label>
+            <select id="status" name="status" required>
+                {% for status in statuses %}
+                <option value="{{ status }}"
+                    {% if application.get('status') == status %}
+                        selected
+                    {% endif %}>
+                    {{ status }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="resume_version">Resume Version</label>
+            <input type="text"
+                   id="resume_version"
+                   name="resume_version"
+                   maxlength="50"
+                   placeholder="Resume v1"
+                   value="{{ application.get('resume_version') or '' }}">
+
+            <label class="checkbox-label">
+                <input type="checkbox"
+                       name="cover_letter_sent"
+                       {% if application.get('cover_letter_sent') %}
+                           checked
+                       {% endif %}>
+                Cover Letter Sent
+            </label>
+
+            <h3>Interview Information</h3>
+
+            <label for="interview_date">Interview Date</label>
+            <input type="date"
+                   id="interview_date"
+                   name="interview_date"
+                   value="{{ application.get('interview_date') or '' }}">
+
+            <label for="interview_notes">Interview Notes</label>
+            <textarea id="interview_notes"
+                      name="interview_notes"
+                      rows="4"
+                      placeholder="Interview details, questions, next steps...">{{ application.get('interview_notes') or '' }}</textarea>
+
+            <button type="submit"
+                    class="btn"
+                    {% if not jobs %}disabled{% endif %}>
+                {{ 'Save Changes' if editing else 'Add Application' }}
+            </button>
+        </form>
+    </main>
+</body>
+</html>

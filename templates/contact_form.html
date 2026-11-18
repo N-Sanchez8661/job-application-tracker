@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Form - Job Tracker</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="container">
+        <a href="{{ url_for('contacts') }}">← Contacts</a>
+
+        <h1>
+            {{ 'Edit Contact' if editing else 'Add Contact' }}
+        </h1>
+
+        {% for message in get_flashed_messages() %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+
+        {% if not companies %}
+            <p class="message">
+                You need to add a company first.
+                <a href="{{ url_for('add_company') }}">
+                    Add Company
+                </a>
+            </p>
+        {% endif %}
+
+        <form method="POST" class="company-form">
+
+            <label for="company_id">Company *</label>
+
+            <select id="company_id"
+                    name="company_id"
+                    required>
+
+                <option value="">Select a company</option>
+
+                {% for company in companies %}
+                <option value="{{ company.company_id }}"
+                    {% if contact.get('company_id')|string == company.company_id|string %}
+                        selected
+                    {% endif %}>
+                    {{ company.company_name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="contact_name">Contact Name *</label>
+
+            <input type="text"
+                   id="contact_name"
+                   name="contact_name"
+                   maxlength="100"
+                   value="{{ contact.get('contact_name') or '' }}"
+                   placeholder="Jane Smith"
+                   required>
+
+            <label for="title">Job Title</label>
+
+            <input type="text"
+                   id="title"
+                   name="title"
+                   maxlength="100"
+                   value="{{ contact.get('title') or '' }}"
+                   placeholder="Technical Recruiter">
+
+            <label for="email">Email</label>
+
+            <input type="email"
+                   id="email"
+                   name="email"
+                   maxlength="100"
+                   value="{{ contact.get('email') or '' }}"
+                   placeholder="jane@example.com">
+
+            <label for="phone">Phone Number</label>
+
+            <input type="tel"
+                   id="phone"
+                   name="phone"
+                   maxlength="20"
+                   value="{{ contact.get('phone') or '' }}"
+                   placeholder="555-010-1234">
+
+            <label for="linkedin_url">LinkedIn Profile</label>
+
+            <input type="url"
+                   id="linkedin_url"
+                   name="linkedin_url"
+                   maxlength="200"
+                   value="{{ contact.get('linkedin_url') or '' }}"
+                   placeholder="https://www.linkedin.com/in/...">
+
+            <label for="notes">Notes</label>
+
+            <textarea id="notes"
+                      name="notes"
+                      rows="4"
+                      placeholder="Recruiter notes, follow-ups, or interview information...">{{ contact.get('notes') or '' }}</textarea>
+
+            <button type="submit"
+                    class="btn"
+                    {% if not companies %}disabled{% endif %}>
+
+                {{ 'Save Changes' if editing else 'Add Contact' }}
+            </button>
+        </form>
+    </main>
+</body>
+</html>

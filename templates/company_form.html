@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Company Form - Job Tracker</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <a href="{{ url_for('companies') }}">← Companies</a>
+
+        <h1>{{ 'Edit Company' if editing else 'Add Company' }}</h1>
+
+        {% for message in get_flashed_messages() %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+
+        <form method="POST" class="company-form">
+
+            <label for="company_name">Company Name *</label>
+            <input id="company_name" type="text"
+                   name="company_name" maxlength="100"
+                   value="{{ company.company_name or '' }}"
+                   required>
+
+            <label for="industry">Industry</label>
+            <input id="industry" type="text"
+                   name="industry" maxlength="50"
+                   value="{{ company.industry or '' }}">
+
+            <label for="website">Website</label>
+            <input id="website" type="text"
+                   name="website" maxlength="200"
+                   value="{{ company.website or '' }}">
+
+            <label for="city">City</label>
+            <input id="city" type="text"
+                   name="city" maxlength="50"
+                   value="{{ company.city or '' }}">
+
+            <label for="state">State</label>
+            <input id="state" type="text"
+                   name="state" maxlength="50"
+                   value="{{ company.state or '' }}">
+
+            <label for="notes">Notes</label>
+            <textarea id="notes"
+                      name="notes" rows="4">{{ company.notes or '' }}</textarea>
+
+            <button type="submit" class="btn">
+                {{ 'Save Changes' if editing else 'Add Company' }}
+            </button>
+
+        </form>
+    </main>
+</body>
+</html>

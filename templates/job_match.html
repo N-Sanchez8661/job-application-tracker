@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Job Match - Job Tracker</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="container">
+
+        <a href="{{ url_for('dashboard') }}">
+            ← Dashboard
+        </a>
+
+        <h1>Job Match</h1>
+
+        <p>
+            Find out how well your skills match
+            available job opportunities.
+        </p>
+
+        {% for message in get_flashed_messages() %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+
+        <!-- SKILLS INPUT FORM -->
+
+        <form method="POST" class="match-form">
+
+            <label for="skills">
+                Enter Your Skills
+            </label>
+
+            <textarea
+                id="skills"
+                name="skills"
+                rows="3"
+                placeholder="Python, SQL, Flask, Git"
+                required>{{ skills_input }}</textarea>
+
+            <small>
+                Separate each skill with a comma.
+            </small>
+
+            <button type="submit" class="btn">
+                Calculate Job Matches
+            </button>
+
+        </form>
+
+        <!-- MATCH RESULTS -->
+
+        {% if searched %}
+
+            <h2>Matching Jobs</h2>
+
+            <p>
+                Jobs ranked by how many of their
+                required skills you have.
+            </p>
+
+            {% if matches %}
+
+                {% for job in matches %}
+
+                <div class="match-card">
+
+                    <div class="match-header">
+
+                        <div>
+                            <h3>
+                                {{ loop.index }}.
+                                {{ job.job_title }}
+                            </h3>
+
+                            <p>
+                                {{ job.company_name }}
+                                {% if job.job_type %}
+                                    — {{ job.job_type }}
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="match-percentage">
+                            {{ job.match_percentage }}%
+                        </div>
+
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                             style="width: {{ job.match_percentage }}%;">
+                        </div>
+                    </div>
+
+                    <p>
+                        <strong>
+                            {{ job.matched_count }}
+                            of
+                            {{ job.total_required }}
+                            required skills matched
+                        </strong>
+                    </p>
+
+                    {% if job.total_required == 0 %}
+
+                        <p>No required skills listed for this job.</p>
+
+                    {% else %}
+
+                        {% if job.matched_skills %}
+                            <h4>Matched Skills</h4>
+
+                            <div class="skill-list">
+                                {% for skill in job.matched_skills %}
+                                    <span class="skill matched">
+                                        ✓ {{ skill }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if job.missing_skills %}
+                            <h4>Missing Skills</h4>
+
+                            <div class="skill-list">
+                                {% for skill in job.missing_skills %}
+                                    <span class="skill missing">
+                                        {{ skill }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    {% endif %}
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>
+                    No jobs found. Add some jobs
+                    before calculating matches.
+                </p>
+
+                <a href="{{ url_for('add_job') }}" class="btn">
+                    Add Job
+                </a>
+
+            {% endif %}
+
+        {% endif %}
+
+    </main>
+</body>
+</html>
