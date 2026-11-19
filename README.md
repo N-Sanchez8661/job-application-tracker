@@ -250,9 +250,15 @@ AI-generated suggestions were integrated into the project and tested through the
 
 Detailed documentation is available in `AI_USAGE.md`.
 
+
 ## Project Demonstration
 
-A 3–7 minute demonstration video will be provided in the GitHub repository as part of the final submission.
+A video demonstration of the JobTrack application is available below.
+
+🎥 [Watch JobTrack Project Demonstration](https://youtu.be/7qZ1qVSs7gQ)
+
+The video demonstrates the dashboard, CRUD operations,
+Job Match feature, and application functionality.
 
 The demonstration covers:
 - User interface and navigation
